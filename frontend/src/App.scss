@@ -1,0 +1,112 @@
+@charset "utf-8";
+
+// Import a Google Font
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700");
+@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+// // Set your brand colors
+$purple: #8a4d76;
+// $pink: #fa7c91;
+// $brown: #757763;
+// $beige-light: #d0d1cd;
+// $beige-lighter: #eff0eb;
+// $default-color:#333;
+
+$fa-font-path: "../webfonts";
+// // Update Bulma's global variables
+$family-sans-serif: Roboto, "SourceSansPro-Bold", sans-serif;
+// $grey-dark: $brown;
+// $grey-light: $beige-light;
+// $primary: $purple;
+// $link: $pink;
+// $widescreen-enabled: false;
+// $fullhd-enabled: false;
+
+// Update some of Bulma's component variables
+// $body-background-color: $grey-light;
+$control-border-width: 2px;
+$input-border-color: transparent;
+$input-shadow: none;
+$input-color: #000;
+$input-hover-color: #000;
+$input-background-color: #f6f6f9;
+$input-focus-border-color: transparent;
+
+// For spacing in margin and padding
+$sizeUnit: rem;
+$marginKey: "m";
+$paddingKey: "p";
+$separator: "-";
+$sizes: (
+  ("none", 0),
+  ("xxs", 0.125),
+  ("xs", 0.25),
+  ("s", 0.5),
+  ("m", 1),
+  ("l", 2),
+  ("xl", 4),
+  ("xxl", 8)
+);
+$positions: (("t", "top"), ("r", "right"), ("b", "bottom"), ("l", "left"));
+
+@function sizeValue($key, $value) {
+  @return if($key == "none", 0, $value + $sizeUnit);
+}
+
+@each $size in $sizes {
+  $sizeKey: nth($size, 1);
+  $sizeValue: nth($size, 2);
+  .#{$marginKey}#{$separator}#{$sizeKey} {
+    margin: sizeValue($sizeKey, $sizeValue);
+  }
+  .#{$paddingKey}#{$separator}#{$sizeKey} {
+    padding: sizeValue($sizeKey, $sizeValue);
+  }
+  @each $position in $positions {
+    $posKey: nth($position, 1);
+    $posValue: nth($position, 2);
+    .#{$marginKey}#{$separator}#{$posKey}#{$separator}#{$sizeKey} {
+      margin-#{$posValue}: sizeValue($sizeKey, $sizeValue);
+    }
+    .#{$paddingKey}#{$separator}#{$posKey}#{$separator}#{$sizeKey} {
+      padding-#{$posValue}: sizeValue($sizeKey, $sizeValue);
+    }
+  }
+}
+
+// Import only what you need from Bulma
+@import "../node_modules/bulma/bulma.sass";
+@import "../node_modules/bulma-steps/src/sass/index.sass";
+// @import '../node_modules/bulma/sass/utilities/_all.sass';
+// @import '../node_modules/bulma/sass/base/_all.sass';
+// @import '../node_modules/bulma/sass/elements/_all.sass';
+// @import '../node_modules/bulma/sass/components/navbar.sass';
+// @import '../node_modules/bulma/sass/layout/hero.sass';
+// @import '../node_modules/bulma/sass/layout/section.sass';
+
+@import "../node_modules/@fortawesome//fontawesome-free/scss/fontawesome.scss";
+@import "../node_modules/@fortawesome//fontawesome-free/scss/solid.scss";
+@import "../node_modules/@fortawesome//fontawesome-free/scss/brands.scss";
+
+// Custom css
+
+.formBox {
+  width: 23rem;
+  padding: 30px;
+  margin-top: 20vh;
+  margin: 0 auto;
+}
+.containerBox {
+  margin: 10vh;
+}
+.menu-list a {
+  border-radius: 50px;
+  color: #4a4a4a;
+  display: block;
+  padding: 0.5em 0.75em;
+}
+.content {
+  min-height: calc(100vh - 70px);
+}
+.footer {
+  height: 50px;
+}
